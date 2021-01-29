@@ -1,0 +1,89 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 48a7f84cfb00d2b116b2c71259e4569abd6675436762d53d0401f88b4fa81889
+
+name:           live
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/live#readme>
+homepage:       https://github.com/githubuser/live#readme
+bug-reports:    https://github.com/githubuser/live/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/live
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_live
+  hs-source-dirs:
+      src
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , network-simple
+    , text
+  default-language: Haskell2010
+
+executable client
+  main-is: Main.hs
+  other-modules:
+      Paths_live
+  hs-source-dirs:
+      app/Client
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , live
+    , network-simple
+    , text
+  default-language: Haskell2010
+
+executable server
+  main-is: Main.hs
+  other-modules:
+      Paths_live
+  hs-source-dirs:
+      app/Server
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , live
+    , network-simple
+    , text
+  default-language: Haskell2010
+
+test-suite live-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_live
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , bytestring
+    , live
+    , network-simple
+    , text
+  default-language: Haskell2010
