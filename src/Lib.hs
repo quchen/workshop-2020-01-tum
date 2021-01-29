@@ -1,6 +1,14 @@
-module Lib
-    ( someFunc
-    ) where
+module Lib where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+import Data.Text ( Text )
+import Data.ByteString ( ByteString )
+
+data ClientAction = Quit | Message Text
+
+
+
+serialize :: ClientAction -> ByteString
+serialize = undefined
+
+deserialize :: ByteString -> Either String ClientAction
+deserialize = undefined
