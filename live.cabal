@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2e1bdf904e57989fcd277e1d94048b35a24a8ef04c5247c44008ead0fd8484e2
+-- hash: e8bdabc2c194d55f8cd96ed6edfd98952345ad314837372c53e6886a0bfaea22
 
 name:           live
 version:        0.1.0.0
@@ -79,7 +79,8 @@ test-suite live-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
+      QuickCheck
+    , aeson
     , base >=4.7 && <5
     , bytestring
     , live

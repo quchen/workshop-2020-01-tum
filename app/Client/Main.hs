@@ -21,7 +21,10 @@ clientBody (socket, sockAddr) = do
     loop = do
         putStrLn "Enter a message: "
         userInput <- T.getLine
-        send socket (T.encodeUtf8 userInput)
-        if userInput == ":quit"
+        let clientAction = if userInput == ":quit"
+              then Quit
+              else Message userInput
+        send socket (serialize clientAction)
+        if clientAction == Quit
             then pure ()
             else loop

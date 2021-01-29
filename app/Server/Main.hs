@@ -3,6 +3,8 @@ import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import qualified Data.Text.Encoding as T
 
+import Lib
+
 main :: IO ()
 main = do
     putStrLn "Starting server"
@@ -19,13 +21,11 @@ serverLoop socket = do
     raw <- recv socket 1000
     let input = case raw of
             Nothing -> Left "Client disconnected"
-            Just bs -> Right (T.decodeUtf8 bs)
+            Just bs -> deserialize bs
 
     case input of
         Left err -> putStrLn ("Error: " ++ err)
-        Right msg
-            | msg == T.pack ":quit"
-                -> putStrLn "Client says goodbye"
-            | otherwise -> do
-                T.putStrLn msg
-                serverLoop socket
+        Right Quit -> putStrLn "Client says goodbye"
+        Right (Message msg) -> do
+            T.putStrLn msg
+            serverLoop socket
